@@ -61,7 +61,7 @@ public static class StravaEndpoints
         try
         {
             await authService.ExchangeCodeAsync(code);
-            return Results.Redirect("http://localhost:4200/setup?connected=1");
+            return Results.Redirect("http://localhost:4200/login?connected=1");
         }
         catch (StravaApiException ex)
         {

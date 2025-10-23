@@ -31,7 +31,7 @@ function formatDuration(totalSeconds: number): string {
           </div>
         </div>
       </div>
-      <div *ngIf="!loading() && !runs().length">No runs found. Try <a routerLink="/setup">connecting Strava</a>.</div>
+      <div *ngIf="!loading() && !runs().length">No runs found. Try <a routerLink="/login">logging in to Strava</a>.</div>
     </div>
   `,
   styles: [`
