@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { StravaService } from '../../services/strava.service';
 
 @Component({
@@ -12,11 +11,15 @@ import { StravaService } from '../../services/strava.service';
 })
 export class LoginComponent {
   private strava = inject(StravaService);
-  private router = inject(Router);
+  private document = inject(DOCUMENT);
 
   login() {
     this.strava.getAuthUrl().subscribe(({ url }) => {
-      window.location.href = url;
+      this.navigateToUrl(url);
     });
+  }
+
+  protected navigateToUrl(url: string): void {
+    this.document.location.href = url;
   }
 }
