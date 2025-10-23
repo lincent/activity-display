@@ -21,7 +21,7 @@ export class StravaService {
   }
 
   getLatestRuns(perPage = 10) {
-    return this.http.get<RunDto[]>(`${API_BASE_URL}/api/strava/activities`, { params: { perPage } as any });
+    return this.http.get<RunDto[]>(`${API_BASE_URL}/api/strava/activities`, { params: { perPage } });
   }
 }
 

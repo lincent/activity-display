@@ -1,0 +1,17 @@
+<div class="wrap">
+    <h2>Latest Runs</h2>
+    <div *ngIf="loading()">Loading…</div>
+    <div *ngIf="error()" class="error">{{ error() }}</div>
+    <div class="list" *ngIf="!loading() && runs().length">
+        <div class="card" *ngFor="let run of runs()">
+            <div class="title">{{ run.name }}</div>
+            <div class="meta">
+                <span>{{ run.startDateLocal | date:'mediumDate' }}</span>
+                <span>{{ run.distanceKm | number:'1.2-2' }} km</span>
+                <span>{{ formatPace(run.averagePaceMinPerKm) }} /km</span>
+                <span>{{ formatDuration(run.movingTimeSec) }}</span>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!loading() && !runs().length">No runs found. Try <a routerLink="/login">logging in to Strava</a>.</div>
+</div>

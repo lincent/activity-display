@@ -15,44 +15,19 @@ function formatDuration(totalSeconds: number): string {
   selector: 'app-activities-list',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <div class="wrap">
-      <h2>Latest Runs</h2>
-      <div *ngIf="loading()">Loading…</div>
-      <div *ngIf="error()" class="error">{{ error() }}</div>
-      <div class="list" *ngIf="!loading() && runs().length">
-        <div class="card" *ngFor="let run of runs()">
-          <div class="title">{{ run.name }}</div>
-          <div class="meta">
-            <span>{{ run.startDateLocal | date:'mediumDate' }}</span>
-            <span>{{ run.distanceKm | number:'1.2-2' }} km</span>
-            <span>{{ formatPace(run.averagePaceMinPerKm) }} /km</span>
-            <span>{{ formatDuration(run.movingTimeSec) }}</span>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="!loading() && !runs().length">No runs found. Try <a routerLink="/login">logging in to Strava</a>.</div>
-    </div>
-  `,
-  styles: [`
-    .wrap { max-width: 720px; margin: 24px auto; padding: 0 12px; }
-    .list { display: grid; gap: 12px; }
-    .card { border: 1px solid #ddd; border-radius: 8px; padding: 12px; }
-    .title { font-weight: 600; margin-bottom: 4px; }
-    .meta { display: flex; gap: 12px; color: #555; font-size: 0.9rem; flex-wrap: wrap; }
-    .error { color: #b00020; }
-  `]
+  templateUrl: './activities-list.component.html',
+  styleUrls: ['./activities-list.component.css']
 })
 export class ActivitiesListComponent {
-  private strava = inject(StravaService);
   runs = signal<RunDto[]>([]);
   loading = signal(true);
   error = signal<string | null>(null);
+  strava = inject(StravaService);
 
   constructor() {
     this.strava.getLatestRuns(10).subscribe({
       next: runs => { this.runs.set(runs); this.loading.set(false); },
-      error: err => { this.error.set('Failed to load runs'); this.loading.set(false); }
+      error: () => { this.error.set('Failed to load runs'); this.loading.set(false); }
     });
   }
 
