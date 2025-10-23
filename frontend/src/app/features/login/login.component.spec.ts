@@ -56,6 +56,7 @@ describe('LoginComponent', () => {
   it('should call StravaService.getAuthUrl when login is called', () => {
     const mockAuthResponse = { url: 'https://www.strava.com/oauth/authorize?test=1' };
     mockStravaService.getAuthUrl.and.returnValue(of(mockAuthResponse));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     spyOn(component, 'navigateToUrl' as any);
 
     component.login();

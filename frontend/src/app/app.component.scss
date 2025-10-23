@@ -1,0 +1,98 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+router-outlet {
+  display: contents;
+}
+
+.app-header {
+  background-color: #fc5200;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.app-title h1 {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  text-decoration: none;
+}
+
+.main-nav {
+  display: flex;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 1rem;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.nav-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.auth-section {
+  display: flex;
+  align-items: center;
+}
+
+.login-button {
+  background-color: white;
+  color: #fc5200;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.login-button:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: 0 0.5rem;
+    height: 56px;
+  }
+  
+  .left-section {
+    gap: 1rem;
+  }
+  
+  .app-title h1 {
+    font-size: 1.25rem;
+  }
+  
+  .nav-link {
+    font-size: 0.9rem;
+  }
+}
